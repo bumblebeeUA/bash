@@ -1,15 +1,29 @@
 #!/bin/bash
 
 #simple way of create 3 files
-touch 1.txt
-touch 2.txt
-touch 3.txt
+#touch 1.txt
+#touch 2.txt
+#touch 3.txt
+#!/bin/bash
+
+create_files () {
+#       i=1;
+        end=$1;
+        for ((i; i<3; i++))
+        do
+        touch file${i}.txt
+done
+}
+
+create_files
+
+
 
 #now we wrap all files in .tar
-tar -cvf archive.tar 1.txt 2.txt 3.txt
+tar -cvf archive.tar file.txt file1.txt file2.txt
 
 #remove non .tar files
-rm 1.txt 2.txt 3.txt
+rm file.txt file1.txt file2.txt
 
 #create variable hostname
 myhost=$(hostname)
