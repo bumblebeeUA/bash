@@ -20,9 +20,11 @@ exiter() {
 }
 
 #set motd message 
-motd() {
+change_motd() {
+        echo "You are welcome to $(hostname)" >> /etc/motd
 
 }
+change_motd
 
 #set hostname
 change_hostname() {
