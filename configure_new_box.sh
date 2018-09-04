@@ -10,7 +10,7 @@ helper() {
 #logger function
 
 logger() {
-
+printf '\e[1;33m%-6s\e[m\n' "$*"
 }
 
 #exiter function
@@ -47,5 +47,10 @@ if [[ $? != 0 ]]
 then
         error "couldn't change PS1 for  $username"
 #TODO: add logger in else
+else
+	logger >&2; error "$*"; exit 1
 fi
 
+configure_ssh_keys() {
+	#empty
+}
