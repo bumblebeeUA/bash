@@ -10,13 +10,17 @@ helper() {
 #logger function
 
 logger() {
-printf '\e[1;33m%-6s\e[m\n' "$*"
+printf '\e[1;33m%-6s\e[m\n' "LOG: $*"
 }
 
 #exiter function
 
 exiter() {
 
+}
+
+error() {
+        echo "ERROR: $*"
 }
 
 #set motd message 
@@ -32,9 +36,7 @@ change_hostname() {
 }
 change_hostname $1
 username=$1
-error() {
-        echo "ERROR: $1"
-}
+
 
 change_prompt() {
 #dev/null
@@ -46,9 +48,8 @@ change_prompt $username
 if [[ $? != 0 ]]
 then
         error "couldn't change PS1 for  $username"
-#TODO: add logger in else
 else
-	logger >&2; error "$*"; exit 1
+	logger  "prompt changed"
 fi
 
 configure_ssh_keys() {
