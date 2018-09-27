@@ -1,31 +1,39 @@
 #!/bin/bash
-
-echo "Choose word: "
-read choose
-
-random() {
-	my_random=$(echo $(( 1 + RANDOM % 10 )))
-}
-random
-
-
-#while $comp_choice == 0
-#do
-#    comp_choice=0
-#    comp_choice=$(echo $((1 + RANDOM % 10)))
-#done
-
-main_function() {
-if [[ $comp_choice =~ ^[1-3] ]];then #scissors
-	RANDOM=scissors
+compchoice=$(( ($RANDOM % 3) + 1 ))
+echo "Please choose a word: "
+read choice
+if [[ $compchoice =~ ^[1-3] ]]; then #scissors
+	compchoice=scissors
+elif [[ $compchoice =~ ^[4-6] ]]; then #stone
+	compchoice=stone
+elif [[ $compchoice =~ ^[7-9] ]]; then #paper
+	compchoice=paper
 fi
 
-if [[ $comp_choice =~ ^[4-6] ]]; then #stone
-	comp_choice=stone
+if [ $choice = $compchoice ]; then
+	echo "$choice and $compchoice are both"
 fi
 
-if [[ $comp_choice =~ ^[7-9] ]]; then #paper
-	comp_choice=paper
+if [ "${choice}" == "rock" ] && [ "${compchoice}" == "scissors" ]; then
+	echo "rock bits scissors"
 fi
-}
-main_function
+
+if [ "${choice}" == "paper" ] && [ "${compchoice}" == "rock" ]; then
+	echo "paper bits rock"
+fi
+
+if [ "${choice}" == "scissors" ] && [ "${compchoice}" == "paper" ];then
+	echo "scissors cut paper"
+fi
+
+if [ "${choice}" == "scissors" ] && [ "${compchoice}" == "rock" ]; then
+	echo "rock bits scissors"
+fi
+
+if [ "${choice}" == "rock" ] && [ "${compchoice}" == "paper" ]; then
+	echo "paper cover rock"
+fi
+
+if [ "${choice}" == "paper" ] && [ "${compchoice}" == "scissors" ]; then
+	echo "scissors cut paper"
+fi
