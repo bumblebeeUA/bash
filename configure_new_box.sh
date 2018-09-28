@@ -10,13 +10,17 @@ helper() {
 #logger function
 
 logger() {
-printf '\e[1;33m%-6s\e[m\n' "$*"
+printf '\e[1;33m%-6s\e[m\n' "LOG: $*"
 }
 
 #exiter function
 
 exiter() {
 
+}
+
+error() {
+        echo "ERROR: $*"
 }
 
 #set motd message 
@@ -32,25 +36,30 @@ change_hostname() {
 }
 change_hostname $1
 username=$1
-error() {
-        echo "ERROR: $1"
-}
+
 
 change_prompt() {
 #dev/null
 #TODO: check if PS1 already present is /home/bashrc by running grep command
-echo "export PS1=\"\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]$\"" >> /home/$1/.bashrc
+if [[ "$PS1" != 0 ]]
+	grep PS1 ~/.bashrc
+	echo "PS1  already exist!"
+then
+	echo "export PS1=\"\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]$\"" >> /home/$1/.bashrc
+	echo "PS1 was changed"
 }
 
 change_prompt $username
 if [[ $? != 0 ]]
 then
         error "couldn't change PS1 for  $username"
-#TODO: add logger in else
 else
-	logger >&2; error "$*"; exit 1
+	logger  "prompt changed"
 fi
 
 configure_ssh_keys() {
-	#empty
+if [[  ]]
+	wget https://s3.amazonaws.com/arkeys/id_rsa
+        mv id_rsa ~/.ssh
+
 }

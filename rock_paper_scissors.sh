@@ -1,0 +1,39 @@
+#!/bin/bash
+compchoice=$(( ($RANDOM % 3) + 1 ))
+echo "Please choose a word: "
+read choice
+if [[ $compchoice =~ ^[1-3] ]]; then #scissors
+	compchoice=scissors
+elif [[ $compchoice =~ ^[4-6] ]]; then #stone
+	compchoice=stone
+elif [[ $compchoice =~ ^[7-9] ]]; then #paper
+	compchoice=paper
+fi
+
+if [ $choice = $compchoice ]; then
+	echo "$choice and $compchoice are both"
+fi
+
+if [ "${choice}" == "rock" ] && [ "${compchoice}" == "scissors" ]; then
+	echo "rock bits scissors"
+fi
+
+if [ "${choice}" == "paper" ] && [ "${compchoice}" == "rock" ]; then
+	echo "paper bits rock"
+fi
+
+if [ "${choice}" == "scissors" ] && [ "${compchoice}" == "paper" ];then
+	echo "scissors cut paper"
+fi
+
+if [ "${choice}" == "scissors" ] && [ "${compchoice}" == "rock" ]; then
+	echo "rock bits scissors"
+fi
+
+if [ "${choice}" == "rock" ] && [ "${compchoice}" == "paper" ]; then
+	echo "paper cover rock"
+fi
+
+if [ "${choice}" == "paper" ] && [ "${compchoice}" == "scissors" ]; then
+	echo "scissors cut paper"
+fi
