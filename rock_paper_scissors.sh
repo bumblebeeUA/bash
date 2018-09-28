@@ -1,7 +1,16 @@
 #!/bin/bash
+
 compchoice=$(( ($RANDOM % 3) + 1 ))
 echo "Please choose a word: "
 read choice
+if [ "${choice}" != "paper" ]; then
+	echo "Please, choose one of: rock, scissors, paper"
+elif [ "${choice}" != "scissors" ]; then
+	echo "Please, choose one of: rock, scissors, paper"
+elif [ "${choice}" != "rock" ]; then
+	echo "Please, choose one of: rock, scissors, paper"
+fi
+
 if [[ $compchoice =~ ^[1-3] ]]; then #scissors
 	compchoice=scissors
 elif [[ $compchoice =~ ^[4-6] ]]; then #stone
