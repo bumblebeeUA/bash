@@ -11,7 +11,7 @@ sudo dpkg-reconfigure tzdata
 
 #update system
 sudo apt update && sudo apt upgrade -y
-
+sudo apt install onetwork-manager
 # adding motd
 echo "Do you want to add MOTD? yes/no"
 read response
