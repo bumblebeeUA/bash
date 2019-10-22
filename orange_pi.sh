@@ -25,3 +25,15 @@ fi
 
 #set ssh only by public key
 cd /etc/ssh && sudo sed -i "s/.*PasswordAuthentication.*/PasswordAuthentication no/g" sshd_config
+
+#Configure Wi-Fi
+echo "SSID_USERNAME"
+read SSID_USERNAME
+echo "SSID_PASSWORD"
+read -s SSID_PASSWORD
+nmcli d wifi connect $SSID_USERNAME password $SSID_PASSWORD
+if [ "$?" -eq "0"  ]; then
+	echo "Successful"
+else
+	echo "Unsuccessful"
+fi
